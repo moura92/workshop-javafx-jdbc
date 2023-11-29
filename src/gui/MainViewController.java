@@ -34,7 +34,7 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void OnMenuItemDepartmentAction() { // trata os eventos do menu
-		System.out.println("OnMenuItemDepartmentAction");
+		loadView("/gui/DepartamentList.fxml");
 	}
 
 	@FXML
@@ -47,7 +47,8 @@ public class MainViewController implements Initializable {
 
 	}
 
-	private synchronized void loadView(String absolutName) { // synchronized garante que o processamento não seja interrompido.
+	private synchronized void loadView(String absolutName) { // synchronized garante que o processamento não seja
+																// interrompido.
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(absolutName));
 			VBox newVBox = loader.load();

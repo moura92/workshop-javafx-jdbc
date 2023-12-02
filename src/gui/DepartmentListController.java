@@ -89,14 +89,16 @@ public class DepartmentListController implements Initializable {
 
 			DepartmentFormController controller = loader.getController();
 			controller.setDepartment(obj);
+			controller.setDepartmentService(new DepartmentService());
 			controller.updateFormData();
-			
+
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Enter Department data"); // titulo da nova janela
 			dialogStage.setScene(new Scene(pane)); // nova Scene = janela. elemento raiz; pane
-			dialogStage.setResizable(false); //propriedade para redimensionar o tamanho da janela.
-			dialogStage.initOwner(parentStage); 
-			dialogStage.initModality(Modality.WINDOW_MODAL); //propriedade para travar a janela anterior. só quando fechar a janela que sobrepos.
+			dialogStage.setResizable(false); // propriedade para redimensionar o tamanho da janela.
+			dialogStage.initOwner(parentStage);
+			dialogStage.initModality(Modality.WINDOW_MODAL); // propriedade para travar a janela anterior. só quando
+																// fechar a janela que sobrepos.
 			dialogStage.showAndWait();
 
 		} catch (IOException e) {

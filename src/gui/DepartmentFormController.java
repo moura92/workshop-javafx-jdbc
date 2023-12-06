@@ -25,14 +25,14 @@ import model.services.DepartmentService;
 
 public class DepartmentFormController implements Initializable {
 
-//Dependencia:	
+// DEPENDENCIA:	
 	private Department entity;
 
 	private DepartmentService service;
 
 	private List<DataChangeListener> dataChangeListeners = new ArrayList<>();
 
-//atributos:
+// ATRIBUTOS:
 	@FXML
 	private TextField txtId;
 

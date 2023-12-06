@@ -17,6 +17,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import model.services.DepartmentService;
+import model.services.SellerService;
 
 public class MainViewController implements Initializable {
 
@@ -31,12 +32,16 @@ public class MainViewController implements Initializable {
 
 	@FXML
 	public void OnMenuItemSellerAction() { // trata os eventos do menu
-		System.out.println("OnMenuItemSellerAction");
+		loadView("/gui/SellerList.fxml", (SellerListController controller) -> {
+			controller.setSellerService(new SellerService());
+			controller.updateTableView();
+
+		});
 	}
 
 	@FXML
 	public void OnMenuItemDepartmentAction() { // trata os eventos do menu
-		loadView("/gui/DepartmentList.fxml",(DepartmentListController controller) -> {
+		loadView("/gui/DepartmentList.fxml", (DepartmentListController controller) -> {
 			controller.setDepartmentService(new DepartmentService());
 			controller.updateTableView();
 
@@ -54,7 +59,8 @@ public class MainViewController implements Initializable {
 
 	}
 
-	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) { // synchronized garante
+	private synchronized <T> void loadView(String absoluteName, Consumer<T> initializingAction) { // synchronized
+																									// garante
 																									// que o
 																									// processamento não
 																									// seja
@@ -74,7 +80,7 @@ public class MainViewController implements Initializable {
 
 			T controller = loader.getController();
 			initializingAction.accept(controller);
-			
+
 		} catch (IOException e) {
 			Alerts.showAlert("IO Exception", "Error loading View", e.getMessage(), AlertType.ERROR);
 		}
